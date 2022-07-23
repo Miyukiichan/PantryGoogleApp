@@ -58,7 +58,9 @@ function setValuesFromResponse(form, invert = false) {
   var formIndex = 0;
   for (var i = headerLine; i < data.length; i++) {
     if (formIndex >= responseValue.length) break;
-    if (data[i][nameIdx] == responseValue[formIndex]) {
+    var dataName = data[i][nameIdx].trim();
+    var responseItem = responseValue[formIndex].trim();
+    if (dataName == responseItem) {
       sheet.getRange(i + 1, valueCol).setValue(!invert);
       formIndex++;
     }
@@ -68,10 +70,10 @@ function setValuesFromResponse(form, invert = false) {
 
 function addPantryItem() {
   var sheet = getThatSheet();
-  var value = getFirstResponseValue(getNewItemForm());
+  var value = getFirstResponseValue(getNewItemForm()).trim();
   //Check for dupes
   var row = findFirstItemInSheet(value);
-  if (!(isNaN(row) || row == null)) return;
+  if (row != null) return;
   sheet.appendRow([value, defaultValue]);
   sortSheet();
   var range = sheet.getRange(startLine, valueCol, sheet.getLastRow() - 1);
@@ -81,7 +83,7 @@ function addPantryItem() {
 
 function removePatryItem() {
   var sheet = getThatSheet();
-  var response = getFirstResponseValue(getRemoveItemForm());
+  var response = getFirstResponseValue(getRemoveItemForm()).trim();
   if (response == "") return;
   var range = findFirstItemInSheet(response);
   var row = range.getRow();

@@ -32,7 +32,7 @@ Once the forms are created, get the ID's of each of the forms and the spreadshee
 
 You then need to create an app scripts library and paste the contents of PantryLib.js into there. Make sure to call the library PantryLib. Include this library in all the form scripts as PantryLib.
 
-Each of the forms will need a trigger to map to the onFormSubmit function when submitting the form. This will likely prompt authentication and trusting the developer (feel free to check to source code before doing this).
+Each of the forms will need a trigger to map to the onFormSubmit function when submitting the form. This will likely prompt authentication and trusting the developer (feel free to check the source code before doing this).
 
 And that's it! Add you're items in via the Add Item form to refresh the other lists (editing the sheet won't do this by default - see Optional Step), mark items that need replenishing in the Pantry List, check items off when bought in the Shopping List, rinse and repeat.
 
